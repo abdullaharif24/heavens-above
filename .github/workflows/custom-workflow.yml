@@ -1,0 +1,23 @@
+name: Custom Workflow Integration
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  custom_workflow:
+    name: Custom Workflow
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Execute Custom Task
+      run: |
+        # Replace this command with the script/command to execute your custom task
+        echo "Executing custom task..."
+        # Example: npm run custom-task
+
+    # Add more steps for additional tasks if needed
