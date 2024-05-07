@@ -1,0 +1,31 @@
+name: Email Notification Workflow
+
+on:
+  push:
+    branches:
+      - main  
+
+jobs:
+  send-notification:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Out Code
+        uses: actions/checkout@v2
+
+      - name: Send Email Notification
+        uses: dawidd6/action-send-mail@v2
+        with:
+          server_address: smtp.mail.yahoo.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_ADDRESS }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "New Push to Branch: ${{ github.ref }}"
+          to: "i200970@nu.edu.com"
+          from: "noreply@example.com"
+          body: |
+            A new push has been made to the repository:
+            Repository: ${{ github.repository }}
+            Branch: ${{ github.ref }}
+            Committer: ${{ github.actor }}
+
